@@ -6,6 +6,7 @@ import com.bootcamp.Entity.Product;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 
 public class DAOProductImpl implements IDAOProduct{
     ConnectionDB connectionDB;
@@ -107,13 +108,18 @@ public class DAOProductImpl implements IDAOProduct{
             st.setInt(4, product.getStock());
             st.setString(5, product.getFabricante());
             st.setInt(6, id);
-            st.executeUpdate();
-            System.out.println("Producto con la ID "+ id + " fue actualizado");
-            System.out.println("Nombre: " + product.getNombre());
-            System.out.println("Descripción: " + product.getDescripcion());
-            System.out.println("Precio: " + product.getPrecio());
-            System.out.println("Stock: " + product.getStock());
-            System.out.println("Fabricante: " + product.getFabricante());
+
+            int result = st.executeUpdate();
+            if (result != 0) {
+                    System.out.println("Producto con la ID "+ id + " fue actualizado");
+                    System.out.println("Nombre: " + product.getNombre());
+                    System.out.println("Descripción: " + product.getDescripcion());
+                    System.out.println("Precio: " + product.getPrecio());
+                    System.out.println("Stock: " + product.getStock());
+                    System.out.println("Fabricante: " + product.getFabricante());
+            } else {
+                System.out.println("Producto no encontrado");
+            }
 
         }catch (SQLException e){
             e.printStackTrace();
@@ -127,8 +133,13 @@ public class DAOProductImpl implements IDAOProduct{
         try {
             PreparedStatement st = connectionDB.connection().prepareStatement("DELETE FROM productos WHERE id_producto = ?");
             st.setInt(1, id);
-            st.executeUpdate();
-            System.out.println("Producto con la ID " + id + " fue eliminado");
+
+            int result = st.executeUpdate();
+            if (result != 0) {
+                System.out.println("Producto con la ID " + id + " fue eliminado");
+            } else {
+                System.out.println("Producto no encontrado");
+            }
 
         }catch (SQLException e){
             e.printStackTrace();

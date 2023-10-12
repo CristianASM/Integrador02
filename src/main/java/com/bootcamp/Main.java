@@ -65,6 +65,7 @@ public class Main {
                     }
                     case 6 -> System.out.println("Saliendo del programa");
                 }
+                System.out.println("....................................................");
                 System.out.println("¿Desea seguir en el programa? 'S = si' - 'N = no'");
                 door = in.next();
                 if (door.equalsIgnoreCase("N")){
