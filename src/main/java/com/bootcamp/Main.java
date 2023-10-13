@@ -28,7 +28,6 @@ public class Main {
                             String description = in.nextLine();
                             System.out.print("Precio: ");
                             double price = in.nextDouble();
-                            in.nextLine();
                             System.out.print("Stock: ");
                             int stock = in.nextInt();
                             in.nextLine();
@@ -43,7 +42,8 @@ public class Main {
                         }
                         case 3 -> {
                             System.out.print("Ingrese el nombre del producto a buscar: ");
-                            String name = in.next();
+                            in.nextLine();
+                            String name = in.nextLine();
                             productService.getProductByName(name);
                         }
                         case 4 -> productService.getAllProducts();
@@ -57,7 +57,6 @@ public class Main {
                             String descriptionUpdated = in.nextLine();
                             System.out.print("Precio: ");
                             double priceUpdated = in.nextDouble();
-                            in.nextLine();
                             System.out.print("Stock: ");
                             int stockUpdated = in.nextInt();
                             in.nextLine();

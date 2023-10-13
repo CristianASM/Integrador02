@@ -7,20 +7,22 @@ import java.sql.SQLException;
 public class ConnectionDB {
     private Connection cnx;
     public Connection connection() throws SQLException {
-        try {
-            cnx = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/integrador02",
-                    "root",
-                    "2010");
+        if (cnx == null || cnx.isClosed()) { // Aca abro la conexion y evito que se abra mas de una vez
+            try {
+                cnx = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/integrador02",
+                        "root",
+                        "2010");
 
-            System.out.println("Conexion abierta");
-            System.out.println("++++++++++++++++++++++++++++++");
-        }catch (SQLException e){
-            e.printStackTrace();
+                System.out.println("Conexion abierta");
+                System.out.println("++++++++++++++++++++++++++++++");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return cnx;
     }
-    public void close() throws SQLException {
+    public void close() throws SQLException { // Cierro la conexion
         if (cnx != null){
             if (!cnx.isClosed()){
                 cnx.close();

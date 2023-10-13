@@ -73,8 +73,8 @@ public class DAOProductImpl implements IDAOProduct {
     @Override
     public void findProductByName(String name) throws SQLException { // Busca un producto por su NOMBRE
         try {
-            PreparedStatement st = connectionDB.connection().prepareStatement("SELECT * FROM productos WHERE nombre = ?");
-            st.setString(1, name);
+            PreparedStatement st = connectionDB.connection().prepareStatement("SELECT * FROM productos WHERE nombre LIKE ?");
+            st.setString(1, "%" + name + "%");
             ResultSet resultSet = st.executeQuery();
 
             if (resultSet.next()) {
@@ -186,7 +186,7 @@ public class DAOProductImpl implements IDAOProduct {
     @Override
     public void updateProductStock(int id, int newStock) throws SQLException { // Agrega stock a un producto
         try {
-            int currentStock = getCurrentProductStock(id);
+            int currentStock = findCurrentProductStock(id);
             int updatedStock = currentStock + newStock;
 
             PreparedStatement st = connectionDB.connection().prepareStatement("UPDATE productos SET stock = ? WHERE id_producto = ?");
@@ -225,7 +225,7 @@ public class DAOProductImpl implements IDAOProduct {
             connectionDB.close();
         }
     }
-    private int getCurrentProductStock(int id) throws SQLException {
+    private int findCurrentProductStock(int id) throws SQLException { // Busca el stock actual para luego sumarlo con el nuevo stock
         PreparedStatement st = connectionDB.connection().prepareStatement("SELECT stock FROM productos WHERE id_producto = ?");
         st.setInt(1, id);
         ResultSet rs = st.executeQuery();
