@@ -15,8 +15,9 @@ public class ProductService {
         System.out.println("  4- Listar todos los productos");
         System.out.println("  5- Actualizar un producto por su ID");
         System.out.println("  6- Actualizar el precio de un producto");
-        System.out.println("  7- Eliminar un producto por su ID");
-        System.out.println("  8- Salir");
+        System.out.println("  7- Agregar stock a un producto");
+        System.out.println("  8- Eliminar un producto por su ID");
+        System.out.println("  9- Salir");
     }
 
     public void createProduct(String name, String description, double price, int stock, String maker) {
@@ -78,6 +79,14 @@ public class ProductService {
         try {
             IDAOProduct dao = new DAOProductImpl();
             dao.updateProductPrice(id, price);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    public void updateProductStock(int id, int newStock) {
+        try {
+            IDAOProduct dao = new DAOProductImpl();
+            dao.updateProductStock(id, newStock);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -184,6 +184,29 @@ public class DAOProductImpl implements IDAOProduct {
     }
 
     @Override
+    public void updateProductStock(int id, int newStock) throws SQLException { // Agrega stock a un producto
+        try {
+            int currentStock = getCurrentProductStock(id);
+            int updatedStock = currentStock + newStock;
+
+            PreparedStatement st = connectionDB.connection().prepareStatement("UPDATE productos SET stock = ? WHERE id_producto = ?");
+            st.setInt(1, updatedStock);
+            st.setInt(2, id);
+
+            int result = st.executeUpdate();
+            if (result != 0) {
+                findProduct(id);
+            } else {
+                System.out.println("Producto no encontrado");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionDB.close();
+        }
+    }
+
+    @Override
     public void deleteProduct(int id) throws SQLException { // Elimina un producto por su ID
         try {
             PreparedStatement st = connectionDB.connection().prepareStatement("DELETE FROM productos WHERE id_producto = ?");
@@ -200,6 +223,16 @@ public class DAOProductImpl implements IDAOProduct {
             e.printStackTrace();
         } finally {
             connectionDB.close();
+        }
+    }
+    private int getCurrentProductStock(int id) throws SQLException {
+        PreparedStatement st = connectionDB.connection().prepareStatement("SELECT stock FROM productos WHERE id_producto = ?");
+        st.setInt(1, id);
+        ResultSet rs = st.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("stock");
+        } else {
+            throw new SQLException("Producto no encontrado");
         }
     }
 }

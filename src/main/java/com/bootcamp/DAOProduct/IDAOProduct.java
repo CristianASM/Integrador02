@@ -11,5 +11,6 @@ public interface IDAOProduct {
     void findAllProducts() throws SQLException;
     void updateProduct(int id, Product product) throws SQLException;
     void updateProductPrice(int id, double price) throws SQLException;
+    void updateProductStock(int id, int newStock) throws SQLException;
     void deleteProduct(int id) throws SQLException;
 }
