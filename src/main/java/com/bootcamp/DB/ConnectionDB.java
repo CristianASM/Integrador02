@@ -16,7 +16,7 @@ public class ConnectionDB {
             System.out.println("Conexion abierta");
             System.out.println("++++++++++++++++++++++++++++++");
         }catch (SQLException e){
-            System.out.println("Error al conectarse con la base de datos");
+            e.printStackTrace();
         }
         return cnx;
     }

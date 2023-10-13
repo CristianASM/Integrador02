@@ -2,22 +2,22 @@ package com.bootcamp.Entity;
 
 public class Product {
     private int id;
-    private String nombre;
-    private String descripcion;
-    private double precio;
+    private String name;
+    private String description;
+    private double price;
     private int stock;
-    private String fabricante;
+    private String maker;
 
     public Product() {
     }
 
-    public Product(int id, String nombre, String descripcion, double precio, int stock, String fabricante) {
+    public Product(int id, String name, String description, double price, int stock, String maker) {
         this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
+        this.name = name;
+        this.description = description;
+        this.price = price;
         this.stock = stock;
-        this.fabricante = fabricante;
+        this.maker = maker;
     }
 
     public int getId() {
@@ -28,28 +28,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getStock() {
@@ -60,23 +60,23 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getFabricante() {
-        return fabricante;
+    public String getMaker() {
+        return maker;
     }
 
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
+    public void setMaker(String maker) {
+        this.maker = maker;
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
+                ", nombre='" + name + '\'' +
+                ", descripcion='" + description + '\'' +
+                ", precio=" + price +
                 ", stock=" + stock +
-                ", fabricante='" + fabricante + '\'' +
+                ", fabricante='" + maker + '\'' +
                 '}';
     }
 }
