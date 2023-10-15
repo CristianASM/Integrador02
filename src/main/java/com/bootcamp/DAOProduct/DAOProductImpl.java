@@ -8,10 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DAOProductImpl implements IDAOProduct {
-    private final ConnectionDB connectionDB; // Creo una instancia de la clase ConnectionDB
-
-    public DAOProductImpl() {  // Cada vez que instancie DAOProductImpl va a crear una instancia de ConnectionDB
-        connectionDB = new ConnectionDB();
+    private final ConnectionDB connectionDB; // Uso del patron singleton de ConnectionDB
+    public DAOProductImpl() {
+        connectionDB = ConnectionDB.getInstance();
+    }
+    private static DAOProductImpl instance; // Patron Singleton
+    public static DAOProductImpl getInstance() {
+        if (instance == null) {
+            instance = new DAOProductImpl();
+        }
+        return instance;
     }
 
     @Override

@@ -6,6 +6,16 @@ import java.sql.SQLException;
 
 public class ConnectionDB {
     private Connection cnx;
+    private static ConnectionDB instance; //Patron singleton
+    private ConnectionDB() {
+    }
+    public static ConnectionDB getInstance() {
+        if (instance == null) {
+            instance = new ConnectionDB();
+        }
+        return instance;
+    }
+
     public Connection connection() throws SQLException {
         if (cnx == null || cnx.isClosed()) { // Aca abro la conexion y evito que se abra mas de una vez
             try {

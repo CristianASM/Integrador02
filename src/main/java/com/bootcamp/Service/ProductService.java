@@ -7,6 +7,11 @@ import com.bootcamp.Entity.Product;
 import java.sql.SQLException;
 
 public class ProductService {
+    private final IDAOProduct dao; //Uso de patron Singleton de DAOProductImpl
+    public ProductService() {
+        dao = DAOProductImpl.getInstance();
+    }
+
     public void showMenu() {
         System.out.println("¡Bienvenido!, Ingrese el numero de la opcion requerida: ");
         System.out.println("  1- Crear un producto");
@@ -28,7 +33,6 @@ public class ProductService {
             product.setPrice(price);
             product.setStock(stock);
             product.setMaker(maker);
-            IDAOProduct dao = new DAOProductImpl();
             dao.newProduct(product);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -37,7 +41,6 @@ public class ProductService {
 
     public void getProduct(int id) {
         try {
-            IDAOProduct dao = new DAOProductImpl();
             dao.findProduct(id);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -45,7 +48,6 @@ public class ProductService {
     }
     public void getProductByName(String name) {
         try {
-            IDAOProduct dao = new DAOProductImpl();
             dao.findProductByName(name);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -54,7 +56,6 @@ public class ProductService {
 
     public void getAllProducts() {
         try {
-            IDAOProduct dao = new DAOProductImpl();
             dao.findAllProducts();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -69,7 +70,6 @@ public class ProductService {
             product.setPrice(price);
             product.setStock(stock);
             product.setMaker(maker);
-            IDAOProduct dao = new DAOProductImpl();
             dao.updateProduct(id, product);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -77,7 +77,6 @@ public class ProductService {
     }
     public void updateProductPrice(int id, double price) {
         try {
-            IDAOProduct dao = new DAOProductImpl();
             dao.updateProductPrice(id, price);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -85,7 +84,6 @@ public class ProductService {
     }
     public void updateProductStock(int id, int newStock) {
         try {
-            IDAOProduct dao = new DAOProductImpl();
             dao.updateProductStock(id, newStock);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -94,7 +92,6 @@ public class ProductService {
 
     public void deleteProduct(int id) {
         try {
-            IDAOProduct dao = new DAOProductImpl();
             dao.deleteProduct(id);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
