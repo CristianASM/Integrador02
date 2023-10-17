@@ -1,11 +1,11 @@
-El Proyecto Integrador 2 consiste en desarrolar un sistema DAO para un almacén de productos, y hacer una conexión a una base de datos utilizando Java y Maven.
-Este proyecto incluye las peticiones CRUD: Crear producto, Buscar por ID, Actualizar por ID y Eliminar por ID.
-La lectura del código está en inglés, mientras que la interacción con el usuario se realiza en español. 
+El Proyecto Integrador 2 consiste en desarrolar un sistema DAO para un almacén de productos, y hacer una conexión a una base de datos utilizando Java y Maven.               
+Este proyecto incluye las peticiones CRUD: Crear producto, Buscar por ID, Actualizar por ID y Eliminar por ID.       
+La lectura del código está en inglés, mientras que la interacción con el usuario se realiza en español.                              
 Se implementó el patrón de diseño Singleton.
 
-Se utilizó el motor de base de datos MySQL con la siguiente estructura:
-CREATE DATABASE integrador02;
-USE integrador02;
+Se utilizó el motor de base de datos MySQL con la siguiente estructura:   
+CREATE DATABASE integrador02;    
+USE integrador02;    
 CREATE TABLE `integrador02`.`productos` (
   `id_producto` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE `integrador02`.`productos` (
   `fabricante` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_producto`));
 
-// Productos de prueba
+// Productos de prueba    
 INSERT INTO `productos` (`nombre`, `descripcion`, `precio`, `stock`, `fabricante`)
 VALUES
     ('Agua mineral', 'Bidon de agua mineral sin gas de 6L', 1800, 100, 'Cachantun'),
