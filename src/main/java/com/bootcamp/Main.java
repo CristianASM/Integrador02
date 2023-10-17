@@ -17,7 +17,7 @@ public class Main {
             while (!sentry) {
                 productService.showMenu();
                 option = in.nextInt();
-                if (option >= 1 && option <= 9) {
+                if (option >= 0 && option <= 9) {
                     switch (option) {
                         case 1 -> {
                             System.out.println("Ingrese los siguientes datos del producto a agregar");
@@ -75,15 +75,22 @@ public class Main {
                             System.out.print("Ingrese la ID del producto a actualizar: ");
                             int idUpdated = in.nextInt();
                             System.out.print("Stock: ");
-                            int stockUpdated = in.nextInt();
+                            double stockUpdated = in.nextDouble();
                             productService.updateProductStock(idUpdated, stockUpdated);
                         }
                         case 8 -> {
+                            System.out.print("Ingrese la ID del producto a actualizar: ");
+                            int idUpdated = in.nextInt();
+                            System.out.print("Stock: ");
+                            int stockUpdated = in.nextInt();
+                            productService.addProductStock(idUpdated, stockUpdated);
+                        }
+                        case 9 -> {
                             System.out.print("Ingrese la ID del producto a eliminar: ");
                             int idDeleted = in.nextInt();
                             productService.deleteProduct(idDeleted);
                         }
-                        case 9 -> {
+                        case 0 -> {
                             System.out.println("Saliendo del programa");
                             sentry = true;
                         }

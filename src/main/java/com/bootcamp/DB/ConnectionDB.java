@@ -22,7 +22,7 @@ public class ConnectionDB {
                 cnx = DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/integrador02",
                         "root",
-                        "2010");
+                        "");
 
                 System.out.println("Conexion abierta");
                 System.out.println("++++++++++++++++++++++++++++++");

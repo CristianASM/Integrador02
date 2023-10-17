@@ -190,7 +190,27 @@ public class DAOProductImpl implements IDAOProduct {
     }
 
     @Override
-    public void updateProductStock(int id, int newStock) throws SQLException { // Agrega stock a un producto
+    public void updateProductStock(int id, double stock) throws SQLException {
+        try {
+            PreparedStatement st = connectionDB.connection().prepareStatement("UPDATE productos SET stock = ? WHERE id_producto = ?");
+            st.setDouble(1, stock);
+            st.setInt(2, id);
+
+            int result = st.executeUpdate();
+            if (result != 0) {
+                findProduct(id);
+            } else {
+                System.out.println("Producto no encontrado");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionDB.close();
+        }
+    }
+
+    @Override
+    public void addProductStock(int id, int newStock) throws SQLException { // Agrega stock a un producto
         try {
             int currentStock = findCurrentProductStock(id);
             int updatedStock = currentStock + newStock;
@@ -224,7 +244,6 @@ public class DAOProductImpl implements IDAOProduct {
             } else {
                 System.out.println("Producto no encontrado");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
