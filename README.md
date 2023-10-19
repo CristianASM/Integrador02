@@ -1,4 +1,4 @@
-El Proyecto Integrador 2 consiste en desarrolar un sistema DAO para un almacén de productos, y hacer una conexión a una base de datos utilizando Java y Maven.               
+El Proyecto Integrador 2 consiste en desarrollar un sistema DAO para un almacén de productos, y hacer una conexión a una base de datos utilizando Java y Maven.               
 Este proyecto incluye las peticiones CRUD: Crear producto, Buscar por ID, Actualizar por ID y Eliminar por ID.       
 La lectura del código está en inglés, mientras que la interacción con el usuario se realiza en español.                              
 Se implementó el patrón de diseño Singleton.
